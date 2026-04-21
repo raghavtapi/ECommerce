@@ -25,7 +25,7 @@ public class Product {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    private ProductCategory productCategory;
+    private ProductCategory category;
 
     public Long getId() {
         return id;
@@ -47,11 +47,11 @@ public class Product {
         this.price = price;
     }
 
-    public ProductCategory getProductCategory() {
-        return productCategory;
+    public ProductCategory getCategory() {
+        return category;
     }
 
-    public void setProductCategory(ProductCategory productCategory) {
-        this.productCategory = productCategory;
+    public void setCategory(ProductCategory productCategory) {
+        this.category = productCategory;
     }
 }

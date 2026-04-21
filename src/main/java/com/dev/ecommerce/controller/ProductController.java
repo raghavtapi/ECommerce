@@ -6,6 +6,8 @@ import com.dev.ecommerce.entity.Product;
 import com.dev.ecommerce.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +24,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ProductResponseDTO createProduct(@RequestBody @Valid ProductRequestDTO productRequestDTO) {
-        return productService.createProduct(productRequestDTO);
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody @Valid ProductRequestDTO productRequestDTO) {
+        ProductResponseDTO productResponseDTO = productService.createProduct(productRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(productResponseDTO);
     }
 
     @GetMapping("/{id}")

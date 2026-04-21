@@ -1,25 +1,22 @@
 package com.dev.ecommerce.dto;
 
 import com.dev.ecommerce.enums.ProductCategory;
-import org.jspecify.annotations.NonNull;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
 public class ProductRequestDTO {
 
-    private Long id;
+    @NotBlank
     private String name;
-    @Deci
+
+    @DecimalMin("0.0")
     private BigDecimal price;
+
+    @NotNull
     private ProductCategory category;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
