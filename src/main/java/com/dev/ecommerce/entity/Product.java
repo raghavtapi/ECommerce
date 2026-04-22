@@ -16,15 +16,13 @@ public class Product {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank
     private String name;
 
     @Column(nullable = false)
-    @DecimalMin("0.0")
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
-    @NotNull
+    @Column(nullable = false)
     private ProductCategory category;
 
     public Long getId() {
