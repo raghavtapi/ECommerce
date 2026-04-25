@@ -18,8 +18,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO) {
-        Product product = mapToEntity(productRequestDTO);
+    public ProductResponseDTO createProduct(ProductRequestDTO request) {
+        Product product = mapToEntity(request);
         Product saved =  productRepository.save(product);
         return mapToResponse(saved);
     }
@@ -32,11 +32,11 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 
-    private Product mapToEntity(ProductRequestDTO productRequestDTO) {
+    private Product mapToEntity(ProductRequestDTO request) {
         Product product = new Product();
-        product.setName(productRequestDTO.getName());
-        product.setPrice(productRequestDTO.getPrice());
-        product.setCategory(productRequestDTO.getCategory());
+        product.setName(request.getName());
+        product.setPrice(request.getPrice());
+        product.setCategory(request.getCategory());
         return product;
     }
 

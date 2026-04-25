@@ -3,6 +3,7 @@ package com.dev.ecommerce.entity;
 import com.dev.ecommerce.enums.CartStatus;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Cart {
     private CartStatus status;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<CartItem> items;
+    private List<CartItem> items = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -50,7 +51,8 @@ public class Cart {
         return items;
     }
 
-    public void setItems(List<CartItem> items) {
-        this.items = items;
+    public void addItem(CartItem item) {
+        this.items.add(item);
+        item.setCart(this);
     }
 }
